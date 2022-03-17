@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react'
+import {Header} from './components/Header';
+import {Container} from './components/Container';
+import {Search} from './components/Search';
+import {Content} from './components/Content';
+import  ThemeContext from './context/ThemeContext';
+import InfoContext from './context/InfoContext';
+
+import GlobalStyle from './styles/GlobalStyle';
+
 
 function App() {
+  const [theme,setTheme] = useState(false);
+  const [info,setInfo] = useState("");
   return (
+    <ThemeContext.Provider value={{theme,setTheme}}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Container>
+          <Header />
+          <InfoContext.Provider value={{info,setInfo}}>
+          <Search />
+          <Content />
+          </InfoContext.Provider>
+        </Container>   
+        <GlobalStyle dark={theme} />
     </div>
+    </ThemeContext.Provider>
   );
 }
 
