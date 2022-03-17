@@ -46,7 +46,7 @@ align-items:center;
 
 @media ${device.mobileL}{
   height:55px;
-  width:100%;
+  width:300px;
 }
 
 
